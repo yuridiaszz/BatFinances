@@ -1,0 +1,202 @@
+/*
+  BatFinances - Aplicativo de finanças pessoais
+  Arquivo: style.css (aparência da página)
+  Tema: fundo preto, textos brancos, bordas cinza finas.
+*/
+
+/* --VARIÁVEIS DE COR--*/
+/* Guardam as cores em um só lugar. Para mudar o tema, altere aqui. */
+:root {
+  --fundo: #000000;        /* fundo da página */
+  --texto: #ffffff;        /* cor principal dos textos */
+  --texto-suave: #9a9a9a;  /* textos secundários (rótulos, cabeçalho da tabela) */
+  --borda: #2a2a2a;        /* cinza escuro das linhas e bordas */
+}
+
+/*--RESET BÁSICO--*/
+/* Faz width e padding somarem de forma previsível em todos os elementos */
+* {
+  box-sizing: border-box;
+}
+
+/*-- PÁGINA --*/
+body {
+  margin: 0;                              /* remove a margem padrão do navegador */
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.4;                       /* espaçamento entre as linhas de texto */
+}
+
+/* --CABEÇALHO-- */
+header {
+  text-align: center;                     /* centraliza o nome do app */
+  padding: 22px 16px 18px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* --CONTEÚDO PRINCIPAL-- */
+main {
+  max-width: 860px;                       /* largura máxima do conteúdo */
+  margin: 0 auto;                         /* centraliza o bloco na tela */
+  padding: 0 16px 40px;
+}
+
+/* Títulos das seções ("Nova transação" e "Transações") */
+h2 {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0 0 12px;
+}
+
+/*--FILTRO POR MÊS--*/
+.filtro {
+  display: flex;
+  justify-content: flex-end;              /* alinha o filtro à direita */
+  align-items: center;
+  gap: 10px;                              /* espaço entre o rótulo e o campo */
+  margin-bottom: 14px;
+  color: var(--texto-suave);
+}
+
+/* --CARTÕES DE RESUMO-- */
+.resumo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* três colunas de tamanho igual */
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cartao {
+  border: 1px solid var(--borda);
+  padding: 16px;
+}
+
+.cartao span {
+  display: block;                         /* faz o rótulo ocupar uma linha própria */
+  color: var(--texto-suave);
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.cartao strong {
+  font-size: 22px;                        /* destaque para o valor */
+}
+
+/* --FORMULÁRIO-- */
+form {
+  display: grid;
+  /* Larguras das colunas: descrição maior, o resto igual, botão ajustado ao conteúdo */
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+/* Aparência comum de campos de texto, listas e botão */
+input,
+select,
+button {
+  font: inherit;                          /* usa a mesma fonte do restante da página */
+  color: var(--texto);
+  background: var(--fundo);
+  border: 1px solid var(--borda);
+  border-radius: 0;                       /* cantos retos, visual mais sóbrio */
+  padding: 10px;
+  min-width: 0;                           /* evita que o campo estoure a coluna */
+}
+
+/* Campo em foco (quando o usuário clica ou usa Tab): borda branca */
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--texto);
+}
+
+/* Botão principal: invertido (fundo branco, texto preto) para se destacar */
+button {
+  cursor: pointer;
+  background: var(--texto);
+  color: var(--fundo);
+  border-color: var(--texto);
+  font-weight: bold;
+}
+
+button:hover {
+  opacity: 0.85;                          /* leve efeito ao passar o mouse */
+}
+
+/* Deixa o ícone do calendário branco (visível no fundo preto) */
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+/* --TABELA-- */
+.tabela-container {
+  overflow-x: auto;                       /* rolagem horizontal em telas pequenas */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;              /* junta as bordas das células */
+}
+
+th,
+td {
+  text-align: left;
+  padding: 11px 8px;
+  border-bottom: 1px solid var(--borda);  /* linha fina separando as transações */
+  white-space: nowrap;                    /* impede quebra de linha dentro das células */
+}
+
+/* Cabeçalho da tabela mais discreto que o conteúdo */
+th {
+  color: var(--texto-suave);
+  font-weight: normal;
+  font-size: 13px;
+}
+
+/* Alinha a coluna de valor à direita (use em th e td) */
+.direita {
+  text-align: right;
+}
+
+/* Botão "Excluir" das linhas: sem fundo nem borda, parece um link discreto.
+   Dê a classe "excluir" ao botão ao criá-lo no JavaScript. */
+.excluir {
+  background: none;
+  border: none;
+  color: var(--texto-suave);
+  font-weight: normal;
+  padding: 0 4px;
+}
+
+/*--Mensagem de lista vazia--*/
+.vazio {
+  color: var(--texto-suave);
+  text-align: center;
+  padding: 24px 0;
+}
+
+/* --CELULAR-- */
+
+@media (max-width: 720px) {
+  .resumo {
+    grid-template-columns: 1fr;
+  }
+
+  form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Descrição e botão ocupam a linha inteira */
+  form input:first-child,
+  form button {
+    grid-column: 1 / -1;
+  }
+}

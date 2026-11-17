@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BatFinances</title>
+        <link rel="stylesheet" href="bt.css">
+        <link rel="icon" href="xxx" type="xxx">
+    </head>
+    <body>
+        <!--Títulos-->
+        <h2>BatFinances</h2>
+    <main>
+        <!--Datas-->
+    <div class="filtro">
+      <label for="mes">Mês</label>
+      <input type="month" id="mes">
+    </div>
+
+    <!--Cartões-->
+    <section class="resumo">
+     <div class="cartao">
+        <span>Saldo</span>
+        <strong id="saldo">R$ 0,00</strong>
+    </div>
+    <div class="cartao">
+        <span>Receitas</span>
+        <strong id="receitas">R$ 0,00</strong>
+    </div>
+    <div class="cartao">
+        <span>Despesas</span>
+        <strong id="despesas">R$ 0,00</strong>
+    </div>
+    </section>
+
+    <!--Formulário para novas transações--->
+    <h2>Novas transações</h2>
+
+    <form id="formulario">
+
+      <!--Descrição da transação-->
+      <input type="text" id="descricao" placeholder="Descrição" maxlength="60" required>
+
+        <!--valores-->
+      <input type="number" id="valor" placeholder="Valor" step="0.01" min="0.01" required>
+
+      <!--Receita e Despesas-->
+      <select id="tipo">
+        <option value="despesa">Despesa</option>
+        <option value="receita">Receita</option>
+      </select>
+
+      <!--Organização dos gastos-->
+      <select id="categoria">
+        <option>Moradia</option>
+        <option>Alimentação</option>
+        <option>Transporte</option>
+        <option>Saúde</option>
+        <option>Educação</option>
+        <option>Lazer</option>
+        <option>Salário</option>
+        <option>Outros</option>
+      </select>
+
+      <!-- Data em que a transação aconteceu -->
+      <input type="date" id="data" required>
+
+      <!--Botão que envia o formulário-->
+      <button type="submit">Adicionar</button>
+    </form>
+    <!--Transações-->
+    <h2>Transações</h2>
+     <div class="tabela-container">
+      <table>
+
+        <!-- Cabeçalho da tabela: nomes das colunas -->
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Descrição</th>
+            <th>Categoria</th>
+            <th class="direita">Valor</th>
+            <th></th> <!-- Coluna do botão Excluir -->
+          </tr>
+        </thead>
+
+        <!--Corpo da tabela-->
+        <tbody id="lista"></tbody>
+      </table>
+
+      <!--Mensagem exibida quando não há transações-->
+      <div id="vazio" class="vazio">Nenhuma transação neste mês.</div>
+    </div>
+    </main>
+    
+    <script src="bt.js"></script>
+
+    </body>
+</html>
